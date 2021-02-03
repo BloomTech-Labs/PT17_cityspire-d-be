@@ -62,7 +62,7 @@ const router = express.Router();
  *      403:
  *        $ref: '#/components/responses/UnauthorizedError'
  */
-router.get('/', authRequired, function (req, res) {
+router.get('/', function (req, res) {
   Profiles.findAll()
     .then((profiles) => {
       res.status(200).json(profiles);
@@ -159,7 +159,7 @@ router.get('/:id', authRequired, function (req, res) {
  *                profile:
  *                  $ref: '#/components/schemas/Profile'
  */
-router.post('/', authRequired, async (req, res) => {
+router.post('/', async (req, res) => {
   const profile = req.body;
   if (profile) {
     const id = profile.id || 0;
