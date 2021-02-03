@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const profileRouter = require('../profile/profileRouter.js');
 
 /**
  * @swagger
@@ -25,8 +24,6 @@ const profileRouter = require('../profile/profileRouter.js');
  *                  type: boolean
  *                  example: true
  */
-
-router.use('/api/profile', profileRouter);
 
 router.get('/', function (req, res) {
   res.status(200).json({ api: 'up', timestamp: Date.now() });
