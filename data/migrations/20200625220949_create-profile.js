@@ -1,3 +1,4 @@
+
 exports.up = (knex) => {
   return knex.schema
     .raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')
@@ -7,9 +8,18 @@ exports.up = (knex) => {
       table.string('name');
       table.string('avatarUrl');
       table.timestamps(true, true);
+    })
+    .createTable('city', function (table) {
+      table.increments();
+      table.string('name');
+      table.string('population');
+      table.string('livability');
+      table.timestamps(true, true);
     });
 };
 
 exports.down = (knex) => {
-  return knex.schema.dropTableIfExists('profiles');
+  return knex.schema
+  .dropTableIfExists('city')
+  .dropTableIfExists('profiles')
 };

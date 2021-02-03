@@ -12,7 +12,8 @@
     "format": "npx prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md)\"",
     "knex": "npx knex --knexfile config/knexfile.js",
     "tests": "npx jest",
-    "coverage": "CI=true npx jest --coverage --detectOpenHandles --forceExit"
+    "coverage": "CI=true npx jest --coverage --detectOpenHandles --forceExit",
+    "server": "nodemon server.js"
   },
   "lint-staged": {
     "api/**/*.+(js|jsx|json|yml|yaml|css|md)": [
@@ -61,7 +62,7 @@
     "http-errors": "~1.6.3",
     "knex": "^0.21.1",
     "morgan": "~1.9.1",
-    "pg": "^8.2.1",
+    "pg": "^8.5.1",
     "swagger-jsdoc": "^4.0.0",
     "swagger-ui-express": "^4.1.4"
   },
