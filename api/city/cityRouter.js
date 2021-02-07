@@ -29,7 +29,7 @@ router.get('/:id', authRequired, function (req, res) {
     });
 });
 
-router.post('/', async (req, res) => {
+router.post('/', authRequired, async (req, res) => {
   const city = req.body;
   if (city) {
     const id = city.id || 0;
