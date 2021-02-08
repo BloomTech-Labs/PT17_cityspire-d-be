@@ -11,9 +11,13 @@ exports.up = (knex) => {
     })
     .createTable('city', function (table) {
       table.increments();
-      table.string('name');
-      table.string('population');
-      table.string('livability');
+      table.string('city');
+      table.string('state');
+      table.float('rental_price');
+      table.string('crime');
+      table.string('pollution');
+      table.float('walkability');
+      table.float('livability');
       table.timestamps(true, true);
     });
 };
