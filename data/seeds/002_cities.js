@@ -5,7 +5,8 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('city').insert([
-        {id: 1, city: 'wichita', state: 'Kansas', rental_price: '850', crime: 'medium', pollution: 'low', walkability: '2.0', livability: '85'},
+        { city: 'wichita', state: 'Kansas', rental_price: '850', crime: 'medium', pollution: 'low', walkability: '2.0', livability: '85', profiles_id: '00ulthapbErVUwVJy4x6'},
+        { city: 'Atlanta', state: 'Georgia', rental_price: '850', crime: 'medium', pollution: 'low', walkability: '2.0', livability: '85', profiles_id: '00ulthapbErVUwVJy4x6'},
       ]);
     });
 };

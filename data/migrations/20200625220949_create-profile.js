@@ -18,7 +18,16 @@ exports.up = (knex) => {
       table.string('pollution');
       table.float('walkability');
       table.float('livability');
+      table
+        .string('profiles_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('profiles')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
       table.timestamps(true, true);
+      
     });
 };
 

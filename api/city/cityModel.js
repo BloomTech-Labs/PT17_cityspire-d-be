@@ -9,7 +9,21 @@ const findBy = (filter) => {
 };
 
 const findById = async (id) => {
-  return db('city').where({ id }).first().select('*');
+  return db('city')
+    .join('profiles', 'city.profiles_id', '=', 'profiles.id')
+    .where('city.id', id)
+    .first()
+    .select(
+      'city.id as city_id',
+      'city',
+      'state',
+      'rental_price',
+      'crime',
+      'pollution',
+      'walkability',
+      'livability',
+      'profiles_id'
+    );
 };
 
 const create = async (city) => {

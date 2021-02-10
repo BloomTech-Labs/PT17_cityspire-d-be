@@ -108,7 +108,7 @@ router.get('/', function (req, res) {
  *      404:
  *        description: 'Profile not found'
  */
-router.get('/:id', authRequired, function (req, res) {
+router.get('/:id', function (req, res) {
   const id = String(req.params.id);
   Profiles.findById(id)
     .then((profile) => {
@@ -120,6 +120,23 @@ router.get('/:id', authRequired, function (req, res) {
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
+    });
+});
+
+router.get('/:id/city', (req, res) => {
+  const { id } = req.params;
+  Profiles.findProfileCity(id)
+    .then((city) => {
+      if (city.length) {
+        res.status(200).json(city);
+      } else {
+        res
+          .status(404)
+          .json({ message: 'could not find city for given user ID' });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ message: 'failed to get city', err });
     });
 });
 
