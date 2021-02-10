@@ -39,20 +39,18 @@ const findOrCreateProfile = async (profileObj) => {
     });
   }
 };
-const findProfileCity = async (id) => {
-  return db('profiles')
-    .join('city', 'city.profiles_id', '=', 'profiles.id')
-    .where('city.profiles_id', id)
+const findCities = async (profile_id) => {
+  return db('cities')
+    .where({ profile_id })
+    .join('profiles', 'cities.profile_id', 'profiles.id')
     .select(
-      'profiles_id',
-      'city.id as city_id',
-      'city',
-      'state',
-      'rental_price',
-      'crime',
-      'pollution',
-      'livability',
-      'walkability'
+      'cities.city',
+      'cities.state',
+      'cities.rental_price',
+      'cities.crime',
+      'cities.pollution',
+      'cities.livability',
+      'cities.walkability'
     );
 };
 
@@ -64,5 +62,5 @@ module.exports = {
   update,
   remove,
   findOrCreateProfile,
-  findProfileCity,
+  findCities,
 };

@@ -125,7 +125,7 @@ router.get('/:id', function (req, res) {
 
 router.get('/:id/city', (req, res) => {
   const { id } = req.params;
-  Profiles.findProfileCity(id)
+  Profiles.findCities(id)
     .then((city) => {
       if (city.length) {
         res.status(200).json(city);

@@ -1,4 +1,3 @@
-
 exports.up = (knex) => {
   return knex.schema
     .raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')
@@ -9,7 +8,7 @@ exports.up = (knex) => {
       table.string('avatarUrl');
       table.timestamps(true, true);
     })
-    .createTable('city', function (table) {
+    .createTable('cities', function (table) {
       table.increments();
       table.string('city');
       table.string('state');
@@ -18,21 +17,17 @@ exports.up = (knex) => {
       table.string('pollution');
       table.float('walkability');
       table.float('livability');
-      table
-        .string('profiles_id')
-        .unsigned()
-        .notNullable()
-        .references('id')
-        .inTable('profiles')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
-      table.timestamps(true, true);
-      
-    });
+      table.string('profile_id')
+      .unsigned()
+      .notNullable()
+      .references('id')
+      .inTable('profiles')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE');     
+    })
 };
 
 exports.down = (knex) => {
   return knex.schema
-  .dropTableIfExists('city')
-  .dropTableIfExists('profiles')
+  .dropTableIfExists('cities').dropTableIfExists('profiles');
 };
