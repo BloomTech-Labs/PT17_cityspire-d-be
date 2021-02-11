@@ -39,6 +39,20 @@ const findOrCreateProfile = async (profileObj) => {
     });
   }
 };
+const findCities = async (profile_id) => {
+  return db('cities')
+    .where({ profile_id })
+    .join('profiles', 'cities.profile_id', 'profiles.id')
+    .select(
+      'cities.city',
+      'cities.state',
+      'cities.rental_price',
+      'cities.crime',
+      'cities.pollution',
+      'cities.livability',
+      'cities.walkability'
+    );
+};
 
 module.exports = {
   findAll,
@@ -48,4 +62,5 @@ module.exports = {
   update,
   remove,
   findOrCreateProfile,
+  findCities,
 };

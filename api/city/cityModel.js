@@ -1,28 +1,28 @@
 const db = require('../../data/db-config');
 
 const findAll = async () => {
-  return await db('city');
+  return await db('cities');
 };
 
 const findBy = (filter) => {
-  return db('city').where(filter);
+  return db('cities').where(filter);
 };
 
 const findById = async (id) => {
-  return db('city').where({ id }).first().select('*');
+  return db('cities').where({ id }).first();
 };
 
 const create = async (city) => {
-  return db('city').insert(city).returning('*');
+  return db('cities').insert(city).returning('*');
 };
 
 const update = (id, city) => {
   console.log(city);
-  return db('city').where({ id: id }).first().update(city).returning('*');
+  return db('cities').where({ id: id }).first().update(city).returning('*');
 };
 
 const remove = async (id) => {
-  return await db('city').where({ id }).del();
+  return await db('cities').where({ id }).del();
 };
 
 module.exports = {

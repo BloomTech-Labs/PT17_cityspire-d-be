@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
     });
 });
 
-router.get('/:id', authRequired, function (req, res) {
+router.get('/:id', function (req, res) {
   const id = String(req.params.id);
   Cities.findById(id)
     .then((city) => {
@@ -29,7 +29,7 @@ router.get('/:id', authRequired, function (req, res) {
     });
 });
 
-router.post('/', authRequired, async (req, res) => {
+router.post('/', async (req, res) => {
   const city = req.body;
   if (city) {
     const id = city.id || 0;
