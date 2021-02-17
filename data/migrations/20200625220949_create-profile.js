@@ -17,6 +17,8 @@ exports.up = (knex) => {
       table.string('pollution');
       table.float('walkability');
       table.float('livability');
+      table.float('latitude');
+      table.float('longitude');
       table.string('profile_id')
       .unsigned()
       .notNullable()
