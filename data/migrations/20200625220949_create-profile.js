@@ -14,7 +14,7 @@ exports.up = (knex) => {
       table.string('state');
       table.float('rental_price');
       table.string('crime');
-      table.string('pollution');
+      table.string('air_quality_index');
       table.float('walkability');
       table.float('livability');
       table.float('latitude');
