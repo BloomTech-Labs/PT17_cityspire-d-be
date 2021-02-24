@@ -9,9 +9,11 @@ exports.up = (knex) => {
       table.timestamps(true, true);
     })
     .createTable('cities', function (table) {
-      table.increments();
+      table.string('id').notNullable().unique();
       table.string('city');
       table.string('state');
+      table.float('diversity_index');
+      table.float('population');
       table.float('rental_price');
       table.string('crime');
       table.string('air_quality_index');
