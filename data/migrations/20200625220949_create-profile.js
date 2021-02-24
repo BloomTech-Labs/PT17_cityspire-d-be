@@ -12,6 +12,8 @@ exports.up = (knex) => {
       table.increments();
       table.string('city');
       table.string('state');
+      table.float('diversity_index');
+      table.float('population');
       table.float('rental_price');
       table.string('crime');
       table.string('air_quality_index');
