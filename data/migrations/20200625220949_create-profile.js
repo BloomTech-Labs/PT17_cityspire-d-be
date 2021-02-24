@@ -9,7 +9,7 @@ exports.up = (knex) => {
       table.timestamps(true, true);
     })
     .createTable('cities', function (table) {
-      table.increments();
+      table.string('id').notNullable().unique();
       table.string('city');
       table.string('state');
       table.float('diversity_index');
