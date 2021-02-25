@@ -1,5 +1,5 @@
 const express = require('express');
-const authRequired = require('../middleware/authRequired');
+// const authRequired = require('../middleware/authRequired');
 const Cities = require('./cityModel');
 const router = express.Router();
 
@@ -29,7 +29,7 @@ router.get('/:id', function (req, res) {
     });
 });
 
-router.post('/', authRequired, async (req, res) => {
+router.post('/', async (req, res) => {
   const city = req.body;
   if (city) {
     const id = city.id || 0;
@@ -53,7 +53,7 @@ router.post('/', authRequired, async (req, res) => {
   }
 });
 
-router.put('/', authRequired, function (req, res) {
+router.put('/', function (req, res) {
   const city = req.body;
   if (city) {
     const id = city.id || 0;
@@ -79,7 +79,7 @@ router.put('/', authRequired, function (req, res) {
   }
 });
 
-router.delete('/:id', authRequired, function (req, res) {
+router.delete('/:id', function (req, res) {
   const id = req.params.id;
   try {
     Cities.findById(id).then((city) => {
