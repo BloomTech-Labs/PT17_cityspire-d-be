@@ -1,3 +1,5 @@
+const { increment } = require("../db-config");
+
 exports.up = (knex) => {
   return knex.schema
     .raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')
@@ -9,7 +11,7 @@ exports.up = (knex) => {
       table.timestamps(true, true);
     })
     .createTable('cities', function (table) {
-      table.string('id').notNullable().unique();
+      table.increments();
       table.string('city');
       table.string('state');
       table.float('diversity_index');
