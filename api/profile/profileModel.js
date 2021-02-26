@@ -44,6 +44,7 @@ const findCities = async (id) => {
     .where('cities.profile_id', id)
     .join('cities', 'cities.profile_id', 'profiles.id')
     .select(
+      'cities.id',
       'city',
       'state',
       'diversity_index',

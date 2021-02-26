@@ -1,6 +1,7 @@
 const express = require('express');
 // const authRequired = require('../middleware/authRequired');
 const Profiles = require('./profileModel');
+const Cities = require('../city/cityModel');
 const router = express.Router();
 
 /**
@@ -307,6 +308,25 @@ router.delete('/:id', function (req, res) {
       message: `Could not delete profile with ID: ${id}`,
       error: err.message,
     });
+  }
+});
+
+router.delete('/:id/city/:city_id', async (req, res, next) => {
+  const { city_id } = req.params;
+
+  const city = Cities.findById(city_id);
+
+  try {
+    if (city) {
+      await Cities.remove(city_id);
+
+      res.status(200).json({
+        city_id,
+        message: 'city deleted',
+      });
+    }
+  } catch (err) {
+    next({ apiCode: 500, apiMessage: 'failed to delete city', ...err });
   }
 });
 
