@@ -12,9 +12,10 @@ const findById = async (id) => {
   return db('cities').where({ id }).first();
 };
 
-const create = async (city) => {
-  return db('cities').insert(city).returning('*');
-};
+async function add(city) {
+  const [id] = await db('cities').insert(city, 'id');
+  return db('cities').where({ id }).first();
+}
 
 const update = (id, city) => {
   console.log(city);
@@ -29,7 +30,7 @@ module.exports = {
   findAll,
   findBy,
   findById,
-  create,
+  add,
   update,
   remove,
 };

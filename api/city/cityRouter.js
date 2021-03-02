@@ -29,30 +29,6 @@ router.get('/:id', function (req, res) {
     });
 });
 
-router.post('/', async (req, res) => {
-  const city = req.body;
-  if (city) {
-    const id = city.id || 0;
-    try {
-      await Cities.findById(id).then(async (cy) => {
-        if (cy == undefined) {
-          //city not found so lets insert it
-          await Cities.create(city).then((city) =>
-            res.status(200).json({ message: 'city created', city: city[0] })
-          );
-        } else {
-          res.status(400).json({ message: 'city already exists' });
-        }
-      });
-    } catch (e) {
-      console.error(e);
-      res.status(500).json({ message: e.message });
-    }
-  } else {
-    res.status(404).json({ message: 'City missing' });
-  }
-});
-
 router.put('/', function (req, res) {
   const city = req.body;
   if (city) {
