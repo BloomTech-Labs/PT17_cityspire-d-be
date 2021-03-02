@@ -59,6 +59,13 @@ const findCities = async (id) => {
     );
 };
 
+const deleteCity = async (id) => {
+  return db('profiles')
+    .where('cities.profile_id', id)
+    .join('cities', 'cities.profile_id', 'profiles.id')
+    .del();
+};
+
 module.exports = {
   findAll,
   findBy,
@@ -68,4 +75,5 @@ module.exports = {
   remove,
   findOrCreateProfile,
   findCities,
+  deleteCity,
 };
